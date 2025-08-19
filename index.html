@@ -3,554 +3,773 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRizma Kampanya Bütçesi</title>
+    <title>PRizma Kampanya Takvimi 2025</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            width: 1920px;
-            height: 1080px;
-            overflow: hidden;
-            color: #333;
-            position: relative;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
         }
-        
-        .container {
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        
+
         .header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 25px 50px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 40px;
         }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 90,90 10,90" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
-            animation: float 20s linear infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateX(-50px) translateY(-50px); }
-            100% { transform: translateX(50px) translateY(50px); }
-        }
-        
-        .header h1 {
-            font-size: 3em;
+
+        .logo {
+            font-size: 3rem;
             font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
         }
-        
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            position: relative;
-            z-index: 2;
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
         }
-        
-        .main-content {
-            flex: 1;
-            padding: 25px 40px;
-            display: grid;
-            grid-template-columns: 2.5fr 1fr;
-            gap: 30px;
-            background: #f8f9fa;
-            height: calc(100vh - 220px);
-            overflow: hidden;
+
+        .date-range {
+            font-size: 1.1rem;
+            color: #4ecdc4;
+            margin-bottom: 30px;
         }
-        
-        .budget-table-container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            overflow: hidden;
-            position: relative;
-            height: 100%;
+
+        .legend {
             display: flex;
-            flex-direction: column;
-        }
-        
-        .table-header {
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 20px 30px;
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: center;
-            flex-shrink: 0;
-        }
-        
-        .table-wrapper {
-            flex: 1;
-            overflow-y: auto;
-        }
-        
-        .budget-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1em;
-        }
-        
-        .budget-table thead {
-            background: linear-gradient(135deg, #45b7d1, #96ceb4);
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        .budget-table th {
-            padding: 15px 20px;
-            text-align: left;
-            font-weight: bold;
-            font-size: 1em;
-        }
-        
-        .budget-table td {
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
-            transition: all 0.3s ease;
-        }
-        
-        .budget-table tbody tr:hover {
-            background: linear-gradient(135deg, rgba(255,107,107,0.05), rgba(78,205,196,0.05));
-            transform: translateX(3px);
-        }
-        
-        .category-row {
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-            font-weight: bold;
-            color: #2d3436;
-        }
-        
-        .category-row td {
-            padding: 15px 20px;
-            font-size: 1.1em;
-        }
-        
-        .item-row td:first-child {
-            padding-left: 35px;
-            font-size: 0.95em;
-        }
-        
-        .price-cell {
-            text-align: right;
-            font-weight: bold;
-            color: #2d3436;
-        }
-        
-        .subtotal-row {
-            background: #f1f2f6;
-            font-weight: bold;
-            border-top: 2px solid #ddd;
-        }
-        
-        .total-row {
-            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
-            color: white;
-            font-weight: bold;
-            font-size: 1.3em;
-        }
-        
-        .total-row td {
-            padding: 20px;
-        }
-        
-        .summary-panel {
-            display: flex;
-            flex-direction: column;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 20px;
-            height: 100%;
-            overflow-y: auto;
-        }
-        
-        .summary-card {
-            background: white;
-            border-radius: 15px;
+            margin-bottom: 30px;
             padding: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sosyal-medya { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
+        .billboard { background: linear-gradient(45deg, #4ecdc4, #7ed6cc); }
+        .kampus { background: linear-gradient(45deg, #45b7d1, #74c0fc); }
+        .ozel { background: linear-gradient(45deg, #96ceb4, #b8e6d1); }
+        .hazirlik { background: linear-gradient(45deg, #ffeaa7, #fff3c4); }
+        .degerlendirme { background: linear-gradient(45deg, #dda0dd, #e9c5e9); }
+
+        .calendar-container {
+            display: grid;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .week-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
         }
-        
-        .summary-card::before {
+
+        .week-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #fd79a8);
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
         }
-        
-        .summary-card h3 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            color: #2d3436;
+
+        .week-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-        
-        .cost-breakdown {
-            margin-bottom: 15px;
-        }
-        
-        .cost-item {
+
+        .week-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
         }
-        
-        .cost-item:last-child {
-            border-bottom: none;
+
+        .week-title {
+            font-size: 1.5rem;
             font-weight: bold;
-            font-size: 1.1em;
-            margin-top: 10px;
-            padding-top: 12px;
-            border-top: 2px solid #ddd;
         }
-        
-        .cost-label {
-            color: #636e72;
+
+        .week-dates {
+            font-size: 1rem;
+            opacity: 0.8;
+            color: #4ecdc4;
         }
-        
-        .cost-value {
-            font-weight: bold;
-            color: #2d3436;
-        }
-        
-        .chart-placeholder {
-            height: 150px;
-            background: linear-gradient(135deg, #667eea20, #764ba220);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1em;
-            color: #636e72;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .pie-chart {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: conic-gradient(
-                #ff6b6b 0deg 86deg,
-                #4ecdc4 86deg 158deg,
-                #45b7d1 158deg 230deg,
-                #96ceb4 230deg 295deg,
-                #ffeaa7 295deg 360deg
-            );
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .pie-chart::before {
-            content: '';
-            width: 70px;
-            height: 70px;
-            background: white;
-            border-radius: 50%;
-            position: absolute;
-        }
-        
-        .pie-label {
-            position: absolute;
-            font-weight: bold;
-            color: #2d3436;
-            z-index: 2;
-            font-size: 0.9em;
-            text-align: center;
-        }
-        
-        .footer-stats {
-            background: linear-gradient(135deg, #2d3436, #636e72);
-            color: white;
-            padding: 15px 40px;
+
+        .activities {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            text-align: center;
-            flex-shrink: 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
         }
-        
-        .stat-item h4 {
-            font-size: 1.8em;
-            margin-bottom: 5px;
-            color: #ffeaa7;
+
+        .activity {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        
-        .stat-item p {
-            font-size: 0.9em;
-            opacity: 0.9;
+
+        .activity:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
         }
-        
-        .currency {
-            color: #27ae60;
+
+        .activity.sosyal-medya { border-left-color: #ff6b6b; }
+        .activity.billboard { border-left-color: #4ecdc4; }
+        .activity.kampus { border-left-color: #45b7d1; }
+        .activity.ozel { border-left-color: #96ceb4; }
+        .activity.hazirlik { border-left-color: #ffeaa7; }
+        .activity.degerlendirme { border-left-color: #dda0dd; }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .activity-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .activity-title {
             font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .activity-description {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .phase-indicator {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .stats-bar {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4ecdc4;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .activities {
+                grid-template-columns: 1fr;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>PRizma Kampanya Bütçesi</h1>
-            <p>23 Eylül - 20 Aralık 2025 • 12 Haftalık Detaylı Maliyet Planı</p>
+    <div class="header">
+        <div class="logo pulse">PRİZMA</div>
+        <div class="subtitle">Kampanya Takvimi 2025</div>
+        <div class="date-range">23 Eylül - 20 Aralık 2025 | 12 Haftalık Kampanya</div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color sosyal-medya"></div>
+            <span>Sosyal Medya</span>
         </div>
-        
-        <div class="main-content">
-            <div class="budget-table-container">
-                <div class="table-header">
-                    Kampanya Bütçe Dağılımı
-                </div>
-                <div class="table-wrapper">
-                    <table class="budget-table">
-                        <thead>
-                            <tr>
-                                <th>Kategori</th>
-                                <th>Açıklama</th>
-                                <th>Tutar (₺)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="category-row">
-                                <td colspan="3">🎯 KAMPÜS AKTİVİTELERİ</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Kriz Masası Kurulumu</td>
-                                <td>15 üniversite x 3 ay</td>
-                                <td class="price-cell currency">₺75,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>QRiz Etkinliği</td>
-                                <td>Maskot, sticker, organizasyon</td>
-                                <td class="price-cell currency">₺35,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>PRizma Güvenli Bölgesi</td>
-                                <td>Kurulum ve materyaller</td>
-                                <td class="price-cell currency">₺25,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Workshop Organizasyonu</td>
-                                <td>Uzman konuşmacı ve materyal</td>
-                                <td class="price-cell currency">₺30,000</td>
-                            </tr>
-                            <tr class="subtotal-row">
-                                <td><strong>Kampüs Alt Toplam</strong></td>
-                                <td></td>
-                                <td class="price-cell currency"><strong>₺165,000</strong></td>
-                            </tr>
-                            
-                            <tr class="category-row">
-                                <td colspan="3">🏙️ OUTDOOR MEDYA & REKLAM</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Billboard Kiralama</td>
-                                <td>15 nokta x 3 ay</td>
-                                <td class="price-cell currency">₺180,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Transit Reklamları</td>
-                                <td>Otobüs-metro reklamları</td>
-                                <td class="price-cell currency">₺45,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Tasarım & Prodüksiyon</td>
-                                <td>Grafik tasarım ve baskı</td>
-                                <td class="price-cell currency">₺35,000</td>
-                            </tr>
-                            <tr class="subtotal-row">
-                                <td><strong>Outdoor Alt Toplam</strong></td>
-                                <td></td>
-                                <td class="price-cell currency"><strong>₺260,000</strong></td>
-                            </tr>
-                            
-                            <tr class="category-row">
-                                <td colspan="3">📱 DİJİTAL PLATFORM & İÇERİK</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Platform Geliştirme</td>
-                                <td>Video platform ve altyapı</td>
-                                <td class="price-cell currency">₺120,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>İçerik Üretimi</td>
-                                <td>Video, grafik, yazılı içerik</td>
-                                <td class="price-cell currency">₺80,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Sosyal Medya Reklamları</td>
-                                <td>Instagram & TikTok ads</td>
-                                <td class="price-cell currency">₺50,000</td>
-                            </tr>
-                            <tr class="subtotal-row">
-                                <td><strong>Dijital Alt Toplam</strong></td>
-                                <td></td>
-                                <td class="price-cell currency"><strong>₺250,000</strong></td>
-                            </tr>
-                            
-                            <tr class="category-row">
-                                <td colspan="3">👥 İNSAN KAYNAKLARI</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Proje Yönetimi</td>
-                                <td>3 kişi x 3 ay</td>
-                                <td class="price-cell currency">₺90,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>İçerik & Sosyal Medya</td>
-                                <td>Editor ve community manager</td>
-                                <td class="price-cell currency">₺45,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Saha Koordinatörleri</td>
-                                <td>Kampüs aktivitelerini yöneten ekip</td>
-                                <td class="price-cell currency">₺35,000</td>
-                            </tr>
-                            <tr class="subtotal-row">
-                                <td><strong>İK Alt Toplam</strong></td>
-                                <td></td>
-                                <td class="price-cell currency"><strong>₺170,000</strong></td>
-                            </tr>
-                            
-                            <tr class="category-row">
-                                <td colspan="3">🎁 PROMOSYON & ÖDÜLLER</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>PRizma Bardakları</td>
-                                <td>50,000 adet özel tasarım</td>
-                                <td class="price-cell currency">₺40,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Kahve Kuponları</td>
-                                <td>2,000 adet ödül kuponu</td>
-                                <td class="price-cell currency">₺20,000</td>
-                            </tr>
-                            <tr class="item-row">
-                                <td>Hediye Paketleri</td>
-                                <td>500 adet PRizma kiti</td>
-                                <td class="price-cell currency">₺15,000</td>
-                            </tr>
-                            <tr class="subtotal-row">
-                                <td><strong>Promosyon Alt Toplam</strong></td>
-                                <td></td>
-                                <td class="price-cell currency"><strong>₺75,000</strong></td>
-                            </tr>
-                            
-                            <tr class="total-row">
-                                <td colspan="2"><strong>KAMPANYA TOPLAM BÜTÇESİ</strong></td>
-                                <td class="price-cell"><strong>₺920,000</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="legend-item">
+            <div class="legend-color billboard"></div>
+            <span>Outdoor/Billboard</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color kampus"></div>
+            <span>Kampüs Etkinlikleri</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color ozel"></div>
+            <span>Özel Etkinlikler</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color hazirlik"></div>
+            <span>Hazırlık</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color degerlendirme"></div>
+            <span>Değerlendirme</span>
+        </div>
+    </div>
+
+    <div class="calendar-container">
+        <!-- HAZIRLIK DÖNEMİ -->
+        <div class="week-card">
+            <div class="phase-indicator">HAZIRLIK</div>
+            <div class="week-header">
+                <div class="week-title">Hazırlık Dönemi</div>
+                <div class="week-dates">9-22 Eylül 2025</div>
             </div>
-            
-            <div class="summary-panel">
-                <div class="summary-card">
-                    <h3>💰 Bütçe Dağılımı</h3>
-                    <div class="cost-breakdown">
-                        <div class="cost-item">
-                            <span class="cost-label">Kampüs Aktiviteleri</span>
-                            <span class="cost-value">%18</span>
-                        </div>
-                        <div class="cost-item">
-                            <span class="cost-label">Outdoor Medya</span>
-                            <span class="cost-value">%28</span>
-                        </div>
-                        <div class="cost-item">
-                            <span class="cost-label">Dijital Platform</span>
-                            <span class="cost-value">%27</span>
-                        </div>
-                        <div class="cost-item">
-                            <span class="cost-label">İnsan Kaynakları</span>
-                            <span class="cost-value">%19</span>
-                        </div>
-                        <div class="cost-item">
-                            <span class="cost-label">Promosyonlar</span>
-                            <span class="cost-value">%8</span>
-                        </div>
+            <div class="activities">
+                <div class="activity hazirlik">
+                    <div class="activity-header">
+                        <div class="activity-icon hazirlik"></div>
+                        <div class="activity-title">İçerik Üretimi</div>
                     </div>
+                    <div class="activity-description">Video cast içerikleri, kriz simülasyonları ve interaktif senaryoların hazırlanması</div>
                 </div>
-                
-                <div class="summary-card">
-                    <h3>📊 Görsel Dağılım</h3>
-                    <div class="chart-placeholder">
-                        <div class="pie-chart">
-                            <div class="pie-label">Bütçe<br>Analizi</div>
-                        </div>
+                <div class="activity hazirlik">
+                    <div class="activity-header">
+                        <div class="activity-icon hazirlik"></div>
+                        <div class="activity-title">Paydaş Koordinasyonu</div>
                     </div>
+                    <div class="activity-description">Üniversiteler, mesleki dernekler ve ajanslarla iş birliği protokollerinin imzalanması</div>
                 </div>
-                
-                <div class="summary-card">
-                    <h3>🎯 Maliyet Analizi</h3>
-                    <div class="cost-breakdown">
-                        <div class="cost-item">
-                            <span class="cost-label">Kullanıcı Başı Maliyet</span>
-                            <span class="cost-value currency">₺92</span>
-                        </div>
-                        <div class="cost-item">
-                            <span class="cost-label">Günlük Ortalama</span>
-                            <span class="cost-value currency">₺11,000</span>
-                        </div>
-                        <div class="cost-item">
-                            <span class="cost-label">Üniversite Başına</span>
-                            <span class="cost-value currency">₺61,333</span>
-                        </div>
+                <div class="activity hazirlik">
+                    <div class="activity-header">
+                        <div class="activity-icon hazirlik"></div>
+                        <div class="activity-title">Materyal Hazırlığı</div>
                     </div>
+                    <div class="activity-description">QRiz stickerlari, PRizma bardakları ve maskot kostümlerinin üretimi</div>
                 </div>
             </div>
         </div>
-        
-        <div class="footer-stats">
-            <div class="stat-item">
-                <h4>₺920K</h4>
-                <p>Toplam Bütçe</p>
+
+        <!-- HAFTA 1 -->
+        <div class="week-card">
+            <div class="phase-indicator">LANSMAŞ</div>
+            <div class="week-header">
+                <div class="week-title">1. Hafta - Büyük Açılış</div>
+                <div class="week-dates">23-29 Eylül 2025</div>
             </div>
-            <div class="stat-item">
-                <h4>84</h4>
-                <p>Kampanya Günü</p>
+            <div class="activities">
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Instagram Teaser</div>
+                    </div>
+                    <div class="activity-description">"Kriz ışığı geldiğinde..." teaser videoları, story serileri ve countdown</div>
+                </div>
+                <div class="activity billboard">
+                    <div class="activity-header">
+                        <div class="activity-icon billboard"></div>
+                        <div class="activity-title">Billboard Aktivasyonu</div>
+                    </div>
+                    <div class="activity-description">15 şehirde ana billboard kampanyası başlatılması</div>
+                </div>
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Kriz Masaları Kurulumu</div>
+                    </div>
+                    <div class="activity-description">İstanbul, Ankara, İzmir kampüslerinde ilk Kriz Masalarının açılması</div>
+                </div>
             </div>
-            <div class="stat-item">
-                <h4>10.000+</h4>
-                <p>Hedef Kullanıcı</p>
+        </div>
+
+        <!-- HAFTA 2 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">2. Hafta - QRiz Dalgası</div>
+                <div class="week-dates">30 Eyl - 6 Ekim 2025</div>
             </div>
-            <div class="stat-item">
-                <h4>15</h4>
-                <p>Üniversite</p>
+            <div class="activities">
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">QRiz Etkinliği</div>
+                    </div>
+                    <div class="activity-description">Kampüslerde maskot aktivitesi ve QR kod avcılığı başlatılması</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">UGC Kampanyası</div>
+                    </div>
+                    <div class="activity-description">#QRizAvcısı hashtag'i ile öğrenci içeriklerinin teşvik edilmesi</div>
+                </div>
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">İlk Video Cast</div>
+                    </div>
+                    <div class="activity-description">Tylenol krizi vaka analizi - Johnson & Johnson ekibiyle canlı yayın</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 3 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">3. Hafta - Güvenli Bölge</div>
+                <div class="week-dates">7-13 Ekim 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">PRizma Güvenli Bölgesi</div>
+                    </div>
+                    <div class="activity-description">Kampüslerde selfie noktaları ve kahve kuponu ödül sistemi</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Instagram Reels Challenge</div>
+                    </div>
+                    <div class="activity-description">#KrizIşığıGeldiğinde challenge'ı viral kampanyası</div>
+                </div>
+                <div class="activity billboard">
+                    <div class="activity-header">
+                        <div class="activity-icon billboard"></div>
+                        <div class="activity-title">QR Entegrasyonu</div>
+                    </div>
+                    <div class="activity-description">Billboard'lara QR kod eklenmesi ve interaktif deneyim</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 4 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">4. Hafta - İçerik Patlaması</div>
+                <div class="week-dates">14-20 Ekim 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">İnteraktif Kısa Film</div>
+                    </div>
+                    <div class="activity-description">Bandersnatch tarzı kriz yönetimi senaryosu yayına alınması</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">LinkedIn Profesyonel</div>
+                    </div>
+                    <div class="activity-description">Sektör profesyonelleri için LinkedIn içerik serisine başlanması</div>
+                </div>
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Kahve Bardağı Dağıtımı</div>
+                    </div>
+                    <div class="activity-description">PRizma renkli bardaklarla kampüs kafelerinde iş birliği</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 5 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">5. Hafta - Genişleme</div>
+                <div class="week-dates">21-27 Ekim 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Yeni Şehirler</div>
+                    </div>
+                    <div class="activity-description">Bursa, Eskişehir, Kocaeli kampüslerinde Kriz Masaları açılması</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">TikTok Stratejisi</div>
+                    </div>
+                    <div class="activity-description">Kısa format PR eğitim içerikleri ve trend'lere uyum</div>
+                </div>
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">Canlı Q&A</div>
+                    </div>
+                    <div class="activity-description">TÜHİD uzmanlarıyla canlı soru-cevap oturumu</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 6 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">6. Hafta - Derinleşme</div>
+                <div class="week-dates">28 Eki - 3 Kasım 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">Vaka Analizi</div>
+                    </div>
+                    <div class="activity-description">Pepsi-Kendall Jenner reklam krizi detaylı inceleme</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Podcast Serisi</div>
+                    </div>
+                    <div class="activity-description">Spotify'da PRizma Podcast'in ilk bölümü yayına alınması</div>
+                </div>
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Öğrenci Moderatörleri</div>
+                    </div>
+                    <div class="activity-description">Seçilen öğrencilerin moderatörlük eğitimi başlatılması</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 7 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">7. Hafta - Topluluk</div>
+                <div class="week-dates">4-10 Kasım 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Kulüp İş Birlikleri</div>
+                    </div>
+                    <div class="activity-description">Üniversite PR ve iletişim kulüpleriyle ortak etkinlikler</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Influencer İş Birliği</div>
+                    </div>
+                    <div class="activity-description">İletişim alanındaki genç uzmanlarla içerik üretimleri</div>
+                </div>
+                <div class="activity billboard">
+                    <div class="activity-header">
+                        <div class="activity-icon billboard"></div>
+                        <div class="activity-title">İkinci Dalga</div>
+                    </div>
+                    <div class="activity-description">Outdoor kampanyada ikinci faz tasarımlarının devreye alınması</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 8 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">8. Hafta - Etkileşim Zirvesi</div>
+                <div class="week-dates">11-17 Kasım 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">Büyük Kriz Simülasyonu</div>
+                    </div>
+                    <div class="activity-description">Canlı yayında 500 öğrencinin katıldığı interaktif kriz oyunu</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Twitter Spaces</div>
+                    </div>
+                    <div class="activity-description">Haftalık Twitter Spaces etkinlikleri başlatılması</div>
+                </div>
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Mentörlük Eşleştirme</div>
+                    </div>
+                    <div class="activity-description">Öğrenci-profesyonel mentörlük programının lansmanı</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 9 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">9. Hafta - Uluslararası</div>
+                <div class="week-dates">18-24 Kasım 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">Global Kriz Örnekleri</div>
+                    </div>
+                    <div class="activity-description">United Airlines, Volkswagen gibi uluslararası kriz vakalarının analizi</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">İngilizce İçerik</div>
+                    </div>
+                    <div class="activity-description">Uluslararası öğrenciler için İngilizce içerik üretimi</div>
+                </div>
+                <div class="activity billboard">
+                    <div class="activity-header">
+                        <div class="activity-icon billboard"></div>
+                        <div class="activity-title">Metro İstasyonları</div>
+                    </div>
+                    <div class="activity-description">İstanbul metro istasyonlarında dijital ekran reklamları</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 10 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">10. Hafta - Gelecek Vizyonu</div>
+                <div class="week-dates">25 Kas - 1 Aralık 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Kariyer Günleri</div>
+                    </div>
+                    <div class="activity-description">PRizma sponsorluğunda kampüslerde kariyer etkinlikleri</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Success Stories</div>
+                    </div>
+                    <div class="activity-description">PRizma'dan ilham alan öğrencilerin başarı hikayelerinin paylaşımı</div>
+                </div>
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">AI & PR Paneli</div>
+                    </div>
+                    <div class="activity-description">Yapay zeka ile PR'ın geleceği temalı uzman paneli</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 11 -->
+        <div class="week-card">
+            <div class="week-header">
+                <div class="week-title">11. Hafta - Zirve</div>
+                <div class="week-dates">2-8 Aralık 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">PRizma Zirvesi</div>
+                    </div>
+                    <div class="activity-description">İstanbul'da 1000 kişilik hibrit zirve etkinliği</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Canlı Yayın Maratonu</div>
+                    </div>
+                    <div class="activity-description">24 saatlik canlı yayın etkinliği tüm platformlarda</div>
+                </div>
+                <div class="activity kampus">
+                    <div class="activity-header">
+                        <div class="activity-icon kampus"></div>
+                        <div class="activity-title">Ödül Töreni</div>
+                    </div>
+                    <div class="activity-description">En aktif kampüs ve öğrenci ödüllerinin verilmesi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAFTA 12 -->
+        <div class="week-card">
+            <div class="phase-indicator">FİNAL</div>
+            <div class="week-header">
+                <div class="week-title">12. Hafta - Kapanış</div>
+                <div class="week-dates">9-20 Aralık 2025</div>
+            </div>
+            <div class="activities">
+                <div class="activity degerlendirme">
+                    <div class="activity-header">
+                        <div class="activity-icon degerlendirme"></div>
+                        <div class="activity-title">Kampanya Raporu</div>
+                    </div>
+                    <div class="activity-description">Detaylı performans analizi ve ROI hesaplamaları</div>
+                </div>
+                <div class="activity sosyal-medya">
+                    <div class="activity-header">
+                        <div class="activity-icon sosyal-medya"></div>
+                        <div class="activity-title">Teşekkür Kampanyası</div>
+                    </div>
+                    <div class="activity-description">Katılımcı öğrencilere özel teşekkür içerikleri</div>
+                </div>
+                <div class="activity ozel">
+                    <div class="activity-header">
+                        <div class="activity-icon ozel"></div>
+                        <div class="activity-title">2026 Planlaması</div>
+                    </div>
+                    <div class="activity-description">Gelecek yıl stratejisi ve sürdürülebilirlik planları</div>
+                </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+
+    <div class="stats-bar">
+        <h3 style="margin-bottom: 20px;">Kampanya Hedefleri</h3>
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">10.000+</span>
+                <span class="stat-label">Aktif Kullanıcı</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">8.000+</span>
+                <span class="stat-label">Instagram Takipçi</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2.000+</span>
+                <span class="stat-label">Etkinlik Katılımcısı</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">PR Profesyoneli</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15</span>
+                <span class="stat-label">Şehir</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Hafta</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tarih bazlı animasyonlar
+        document.addEventListener('DOMContentLoaded', function() {
+            const weekCards = document.querySelectorAll('.week-card');
+            const today = new Date();
+            
+            weekCards.forEach((card, index) => {
+                // Haftalara göre animasyonlu giriş
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+
+            // Hover efektleri için ek JavaScript
+            const activities = document.querySelectorAll('.activity');
+            activities.forEach(activity => {
+                activity.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.1)';
+                });
+                
+                activity.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            // Logo renklerini döngüsel olarak değiştir
+            const logo = document.querySelector('.logo');
+            const colors = [
+                'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
+                'linear-gradient(45deg, #4ecdc4, #45b7d1)',
+                'linear-gradient(45deg, #45b7d1, #96ceb4)',
+                'linear-gradient(45deg, #96ceb4, #ffeaa7)',
+                'linear-gradient(45deg, #ffeaa7, #dda0dd)',
+                'linear-gradient(45deg, #dda0dd, #ff6b6b)'
+            ];
+            
+            let colorIndex = 0;
+            setInterval(() => {
+                logo.style.background = colors[colorIndex];
+                logo.style.webkitBackgroundClip = 'text';
+                logo.style.backgroundClip = 'text';
+                colorIndex = (colorIndex + 1) % colors.length;
+            }, 3000);
+        });
+    </script>
